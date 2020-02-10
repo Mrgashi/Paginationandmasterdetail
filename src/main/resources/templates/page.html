@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Main View</title>
+    <style>
+        h1 {
+            font-size: 14px;
+        }
+
+        a {
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<span th:each="book : ${books}">
+    <div>
+    <a th:href="${details}" th:text="${book}"></a>
+    </div>
+</span>
+
+<a th:href="'/?side=0'"> - Home - </a>
+
+<a th:href="'/?side=' + ${side - 1}" th:if="${side > 0}">Previous page</a>
+
+<span th:each="p : ${list}">
+    <a th:if="${p != side}" th:href="'/?side=' + ${p}" th:text="${p}"></a>
+    <a th:if="${p == side}" th:text="${p}"></a>
+</span>
+
+<a th:href="'/?side=' + ${side + 1}" th:if="${side < 9}">Next Page</a>
+
+
+</body>
+</html>
